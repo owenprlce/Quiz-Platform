@@ -118,7 +118,7 @@ npm start
 
 After receiving our project proposal feedback, it was made clear that we should rethink the complexity of our project. In terms of scope, the amount of functionality we would want to implement would be too much, so we decided to scale down our project. While we would not have any major design changes in terms of our prescriptive architecture allowing for a faithful descriptive architecture or 'as implemented' project, we just added necessary features. In terms of features added, the most important functionality a quiz platform should have is an ability to login as either a 'STUDENT' or 'TEACHER' role. And once logged in, depending on the role you would have a set of predefined functionality, or way of interacting with the front-end. If you were logged in as a 'STUDENT' you should be able to view quizzes, and take one that interests you. And once taken, you should be able to receive brief feedback on how well you did. On the other hand, when logged in as a 'TEACHER', you should be able to create quizzes, and view results from students who are eager to take them. While this is a different approach from many other mainstream quiz platforms like Quizlet, and Kahoot, it encapsulates all functionality necessary to be used as a tool to test teachers to test students' knowledge, and receive basic feedback on what they need to change in their teaching style.  
 
-## 6) Information Insightful To Grader For Design Rationale
+## 6) Design Rationale
 
 ### **Client-Server Layered:**
 
