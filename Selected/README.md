@@ -98,7 +98,7 @@ npm start
 ```bash
 # Frontend/Backend:
 npm start
-   
+```
 
 ## 4) Differences Between Architectural Designs
 
