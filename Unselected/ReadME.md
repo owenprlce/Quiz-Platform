@@ -1,108 +1,117 @@
-Event Driven Quiz Platform Implementation Guide
-1) Compilation and Implementation Platform
+# Event-Driven Implementation 
 
-USED: 
-     Spring Boot (Backend): Spring Boot Version 3.2.0
-     Java JDK 17
-     Maven
-     WebSocket for real-time events
-     JWT for authentication
-     React + TypeScript (Frontend)
+## 1. Compilation and Implementation 
 
-WHAT TO INSTALL:
+### **Technologies Used**
+- **Backend:**
+  - Spring Boot Version 3.2.0
+  - Java JDK 17
+  - Maven
+  - WebSocket for real-time events
+  - JWT for authentication
+- **Frontend:**
+  - React + TypeScript
 
-    Node.js (For frontend)
-    Java JDK Version 17
-    aven
+### **What to Install**
+- Node.js (for frontend)
+- Java JDK Version 17
+- Maven
 
-HOW TO CONFIGURE:
+### **Configuration**
+- **Backend Configuration:** `quiz-platform/src/main/resources/application.yml`
+- **Frontend Configuration:** `quiz-platform-frontend/.env`
 
-Backend Configuration: quiz-platform/src/main/resources/application.yml
-Frontend Configuration: quiz-platform-frontend/.env
-
-REQUIRED TO COMPILE:
-
-Java JDK 17
-Maven
-Node.js
-NPM/Yarn
-
-2) Compilation
-   TO COMPILE:
-3) 
-   Frontend:
-    cd quiz-platform-frontend
-    npm install
-
-   Backend:
-    cd quiz-platform
-    vn clean install -DskipTests
-
-3) Execution
-TO EXECUTE: 'npm start' wil execute both the frontend and backend
-4) Architecture Details
-
-Communication is asynchronous through WebSocket connections
-Real-time updates between server and clients
-
-Events are published and consumed for quiz actions:
-
-QuizStartEvent
-QuestionAnsweredEvent
-QuizCompletedEvent
-
-Event handlers process events asynchronously
-State changes are propagated through event notifications
-WebSocket enables bi-directional communication
-
-5) Key Components
-   Backend:
-
-    Event Publishers: Publish quiz-related events
-    Event Handlers: Process events asynchronously
-    WebSocket Controllers: Handle real-time connections
-    JWT Authentication: Secure user sessions
-    Models: Quiz, Question, User, QuizSession
-
-Frontend:
-
-    WebSocket Client: Maintains real-time connection
-    Event Listeners: React to server events
-    Student Dashboard: View and take quizzes
-    Teacher Dashboard: Create and monitor quizzes
-    Real-time Quiz Interface: Interactive quiz taking
-
-6) Design Rationale
-   The event-driven architecture was chosen for several key reasons:
-
-Real-time Interaction:
-
-Immediate feedback for quiz answers
-Live updates for quiz progress
-Real-time monitoring for teachers
+### **Requirements to Compile**
+- Java JDK 17
+- Maven
+- Node.js
+- NPM/Yarn
 
 
-Scalability:
+## 2. Compilation
 
-Asynchronous event processing
-Decoupled components
-Independent scaling of services
+### **Frontend**
+cd quiz-platform-frontend
+npm install
 
+### **Backend**
+cd quiz-platform
+mvn clean install -DskipTests
 
-Responsiveness:
+## 3. Execution
 
-No polling required
-Reduced server load
-Better user experience
+### **Frontend and backend**
+npm start
 
+## 4. Architecture Details
 
-Flexibility:
+### **Communication Type**
+- Asynchronous: WebSocket connections
 
-Easy to add new event types
-Simple to extend functionality
-Loose coupling between components
+### **Features**
+- Real-time updates between server and clients
+- Events are published and consumed for quiz actions:
+  - `QuizStartEvent`
+  - `QuestionAnsweredEvent`
+  - `QuizCompletedEvent`
+- Event handlers process events asynchronously
+- State changes are propagated through event notifications
 
+---
 
+## 5. Key Components
 
-The architecture supports both synchronous (REST) and asynchronous (WebSocket) communication, 
-making it ideal for an interactive quiz platform where real-time updates and immediate feedback are crucial for the user experience.
+### **Backend**
+- **Event Publishers:** Publish quiz-related events
+- **Event Handlers:** Process events asynchronously
+- **WebSocket Controllers:** Handle real-time connections
+- **JWT Authentication:** Secure user sessions
+- **Models:** Quiz, Question, User, QuizSession
+
+### **Frontend**
+- **WebSocket Client:** Maintains real-time connection
+- **Event Listeners:** React to server events
+- **Student Dashboard:** View and take quizzes
+- **Teacher Dashboard:** Create and view results of quizzes
+- **Real-time Quiz Interface:** Interactive quiz-taking
+
+---
+
+## 6. Design Rationale
+
+Architecture Decision: Client-Server vs Event-Driven
+Initial Analysis
+When starting our quiz platform project, we considered two main architectural styles:
+
+Client-Server Layered Architecture
+Event-Driven Architecture
+
+Initially, we were drawn to event-driven because its architecture triggers events which invoke specific functionalities. However, after careful consideration of our actual needs and time constraints, we chose to go with the simpler client-server approach.
+
+Why We Chose Client-Server
+1. Development Speed
+The client-server architecture was much simpler to implement. With standard REST APIs and a straightforward React frontend, we could get the basic quiz functionality working quickly. Event-driven would have required setting up WebSocket connections, event handlers, and dealing with state management across real-time connections - more complexity than we needed.
+2. Team Experience
+Our team was more familiar with traditional client-server patterns. Most of us had worked with REST APIs and React before, making it easier to divide tasks and work efficiently. Event-driven would have required additional learning and potential delays.
+3. Actual Requirements
+Looking at our core requirements:
+
+Students need to take quizzes
+Students need to get their grade
+Teachers need to create quizzes
+Teachers need to view results
+
+None of these actually required real-time updates. A simple request-response pattern works perfectly fine for our use case. While real-time updates would be nice, they weren't essential for our MVP.
+
+4. Maintenance
+Client-server is easier to maintain because:
+
+Clear separation of concerns
+Well-defined data flow
+Easier to debug
+Simpler testing
+
+5. Resource Efficiency
+Our client-server implementation is more resource-efficient for our needs. Event-driven would have required maintaining WebSocket connections and handling real-time events, which would have been overkill for basic quiz functionality.
+Learning Experience
+Through this process, we learned that sometimes the simpler solution is better. While event-driven architecture has its benefits, it would have been overengineering for our specific needs. The client-server architecture let us focus on delivering core functionality without getting bogged down in unnecessary complexity.
