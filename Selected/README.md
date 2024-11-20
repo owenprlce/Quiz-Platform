@@ -96,12 +96,9 @@ npm start
 
 **TO EXECUTE:**
 ```bash
-# Frontend:
-npm run dev
+# Frontend/Backend:
+npm start
    
-# Backend:
-mvn spring-boot:run
-```
 
 ## 4) Differences Between Architectural Designs
 
