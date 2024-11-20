@@ -35,18 +35,29 @@
 ```bash
 cd quiz-platform-frontend
 npm install
+```
 
 ### **Backend**
+```bash
 cd quiz-platform
 mvn clean install -DskipTests
+```
 
 ## 3. Execution
 
-To execute both the frontend and backend:
+### **Frontend**
+```bash
+cd quiz-platform-frontend
+npm run dev
+```
 
-npm start
+### **Backend**
+```bash
+cd quiz-platform
+mvn spring-boot:run
+```
 
-# 4. Architecture Details
+## 4. Architecture Details
 
 ### **Communication Type**
 - Asynchronous through WebSocket connections
@@ -63,7 +74,7 @@ npm start
 
 ---
 
-# 5. Key Components
+## 5. Key Components
 
 ### **Backend**
 - **Event Publishers:** Publish quiz-related events
@@ -81,7 +92,7 @@ npm start
 
 ---
 
-# 6. Design Rationale
+## 6. Design Rationale
 
 ### **Real-time Interaction**
 - Immediate feedback for quiz answers
@@ -106,4 +117,3 @@ npm start
 ---
 
 The architecture supports both synchronous (REST) and asynchronous (WebSocket) communication, making it ideal for an interactive quiz platform where real-time updates and immediate feedback are crucial for the user experience.
-
