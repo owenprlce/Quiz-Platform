@@ -1,6 +1,6 @@
-# Event-Driven Quiz Platform Implementation Guide
+# Event-Driven Implementation 
 
-## 1. Compilation and Implementation Platform
+## 1. Compilation and Implementation 
 
 ### **Technologies Used**
 - **Backend:**
@@ -27,40 +27,26 @@
 - Node.js
 - NPM/Yarn
 
----
 
 ## 2. Compilation
 
 ### **Frontend**
-```bash
 cd quiz-platform-frontend
 npm install
-```
 
 ### **Backend**
-```bash
 cd quiz-platform
 mvn clean install -DskipTests
-```
 
 ## 3. Execution
 
-### **Frontend**
-```bash
-cd quiz-platform-frontend
-npm run dev
-```
-
-### **Backend**
-```bash
-cd quiz-platform
-mvn spring-boot:run
-```
+### **Frontend and backend**
+npm start
 
 ## 4. Architecture Details
 
 ### **Communication Type**
-- Asynchronous through WebSocket connections
+- Asynchronous: WebSocket connections
 
 ### **Features**
 - Real-time updates between server and clients
@@ -70,7 +56,6 @@ mvn spring-boot:run
   - `QuizCompletedEvent`
 - Event handlers process events asynchronously
 - State changes are propagated through event notifications
-- WebSocket enables bi-directional communication
 
 ---
 
@@ -87,33 +72,46 @@ mvn spring-boot:run
 - **WebSocket Client:** Maintains real-time connection
 - **Event Listeners:** React to server events
 - **Student Dashboard:** View and take quizzes
-- **Teacher Dashboard:** Create and monitor quizzes
+- **Teacher Dashboard:** Create and view results of quizzes
 - **Real-time Quiz Interface:** Interactive quiz-taking
 
 ---
 
 ## 6. Design Rationale
 
-### **Real-time Interaction**
-- Immediate feedback for quiz answers
-- Live updates for quiz progress
-- Real-time monitoring for teachers
+Architecture Decision: Client-Server vs Event-Driven
+Initial Analysis
+When starting our quiz platform project, we considered two main architectural styles:
 
-### **Scalability**
-- Asynchronous event processing
-- Decoupled components
-- Independent scaling of services
+Client-Server Layered Architecture
+Event-Driven Architecture
 
-### **Responsiveness**
-- No polling required
-- Reduced server load
-- Better user experience
+Initially, we were drawn to event-driven because its architecture triggers events which invoke specific functionalities. However, after careful consideration of our actual needs and time constraints, we chose to go with the simpler client-server approach.
 
-### **Flexibility**
-- Easy to add new event types
-- Simple to extend functionality
-- Loose coupling between components
+Why We Chose Client-Server
+1. Development Speed
+The client-server architecture was much simpler to implement. With standard REST APIs and a straightforward React frontend, we could get the basic quiz functionality working quickly. Event-driven would have required setting up WebSocket connections, event handlers, and dealing with state management across real-time connections - more complexity than we needed.
+2. Team Experience
+Our team was more familiar with traditional client-server patterns. Most of us had worked with REST APIs and React before, making it easier to divide tasks and work efficiently. Event-driven would have required additional learning and potential delays.
+3. Actual Requirements
+Looking at our core requirements:
 
----
+Students need to take quizzes
+Students need to get their grade
+Teachers need to create quizzes
+Teachers need to view results
 
-The architecture supports both synchronous (REST) and asynchronous (WebSocket) communication, making it ideal for an interactive quiz platform where real-time updates and immediate feedback are crucial for the user experience.
+None of these actually required real-time updates. A simple request-response pattern works perfectly fine for our use case. While real-time updates would be nice, they weren't essential for our MVP.
+
+4. Maintenance
+Client-server is easier to maintain because:
+
+Clear separation of concerns
+Well-defined data flow
+Easier to debug
+Simpler testing
+
+5. Resource Efficiency
+Our client-server implementation is more resource-efficient for our needs. Event-driven would have required maintaining WebSocket connections and handling real-time events, which would have been overkill for basic quiz functionality.
+Learning Experience
+Through this process, we learned that sometimes the simpler solution is better. While event-driven architecture has its benefits, it would have been overengineering for our specific needs. The client-server architecture let us focus on delivering core functionality without getting bogged down in unnecessary complexity.
