@@ -9,7 +9,7 @@ This document outlines the contributions of each member of Software Architecture
   -
 
 - **Member 2: Grant Palmer**
-  - Prepared key presentation materials:
+  - Prepared/Presented the Following Presentation Materials:
     - Slide 3: Project Description (Quiz Taking Platform)
     - Slide 5: Client-Server Layered Component Diagram
     - Slides 6–8: Mapping Components and Connectors to Class Implementations for Client-Server
