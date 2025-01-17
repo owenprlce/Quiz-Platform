@@ -12,15 +12,11 @@
 **WHAT TO INSTALL:**
 - Node.js (For node and npm)
 - Java JDK Version 17
+- Maven
 
-**HOW TO CONFIGURE:**
-- Configuration Settings:
-  - quiz-platform\src\main\resources\application.properties
-  
 **REQUIRED TO COMPILE:**
 - Java JDK Version 17 
-- Maven Wrapper file used for ease of compilation:
-  - 'mvnw.cmd'
+- Maven
 - Node.js
 
 ### **Event-Driven Architecture**
@@ -37,7 +33,7 @@
 - Java JDK 17
 - Maven
 - Node.js
-- NPM/Yarn
+- NPM
   
 ## 2) Compilation
 
@@ -47,19 +43,21 @@
  
 **Frontend:**
 ```bash
-cd quiz-platform-frontend
+cd Client-Server-Selected/quiz-platform-frontend
 npm install
 ```
 
 **Backend:**
 ```bash
-cd quiz-platform
+cd Client-Server-Selected
 
 # Apple:
-./mvnw compile
+./mvn clean install
+./mvn compile
 
 # Windows:
-.\mvnw.cmd compile
+.\mvn clean install
+.\mvn compile
 ```
   
 ### **Event-Driven Architecture**
@@ -86,10 +84,10 @@ mvn clean install -DskipTests
 npm start
    
 # Back-end (Windows):
-.\mvnw.cmd spring-boot:run
+.\mvn spring-boot:run
 
 # Back-end (Apple):
-./mvnw spring-boot:run
+./mvn spring-boot:run
 ```
   
 ### **Event-Driven Architecture**
